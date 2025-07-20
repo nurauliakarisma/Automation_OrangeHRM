@@ -8,7 +8,7 @@ describe('Fitur Login OrangeHRM', () => {
       cy.get('input[name="password"]').type('admin123');
       cy.get('button[type="submit"]').click();
       cy.wait(1000);
-      cy.url().should('include', '/dashboard/index'); //Sukses jika berhasil ke halaman dashboard
+      cy.url().should('include', '/dashboard/index');
       cy.get('.oxd-topbar-header-breadcrumb > h6').should('contain', 'Dashboard');
     });
   
@@ -22,7 +22,7 @@ describe('Fitur Login OrangeHRM', () => {
       cy.get('input[name="password"]').type('admin123');
       cy.get('button[type="submit"]').click();
       cy.wait(1000);
-      cy.url().should('include', '/dashboard/index'); //Sukses jika berhasil ke halaman dashboard
+      cy.url().should('include', '/dashboard/index');
       cy.get('.oxd-topbar-header-breadcrumb > h6').should('contain', 'Dashboard');
   
       // Klik profil dan logout
@@ -36,6 +36,7 @@ describe('Fitur Login OrangeHRM', () => {
       cy.get('input[name="username"]').type('Admin');
       cy.get('input[name="password"]').type('salah123');
       cy.get('button[type="submit"]').click();
+      cy.wait(1000);
       cy.get('.oxd-alert-content-text').should('contain', 'Invalid credentials');
     });
   
@@ -43,11 +44,13 @@ describe('Fitur Login OrangeHRM', () => {
       cy.get('input[name="username"]').type('Salah');
       cy.get('input[name="password"]').type('admin123');
       cy.get('button[type="submit"]').click();
+      cy.wait(1000);
       cy.get('.oxd-alert-content-text').should('contain', 'Invalid credentials');
     });
   
     it('TC005 - Login dengan field kosong', () => {
       cy.get('button[type="submit"]').click();
+      cy.wait(1000);
       cy.get(':nth-child(2) > .oxd-input-group > .oxd-text').should('contain', 'Required');
       cy.get(':nth-child(3) > .oxd-input-group > .oxd-text').should('contain', 'Required');
     });
@@ -55,12 +58,14 @@ describe('Fitur Login OrangeHRM', () => {
     it('TC006 - Login dengan password kosong', () => {
       cy.get('input[name="username"]').type('Admin');
       cy.get('button[type="submit"]').click();
+      cy.wait(1000);
       cy.get(':nth-child(3) > .oxd-input-group > .oxd-text').should('contain', 'Required');
     });
   
     it('TC007 - Login dengan username kosong', () => {
       cy.get('input[name="password"]').type('admin123');
       cy.get('button[type="submit"]').click();
+      cy.wait(1000);
       cy.get(':nth-child(2) > .oxd-input-group > .oxd-text').should('contain', 'Required');
     });
   });
