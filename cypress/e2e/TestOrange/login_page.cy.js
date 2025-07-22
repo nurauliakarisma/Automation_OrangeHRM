@@ -14,10 +14,9 @@ describe('Fitur Login OrangeHRM', () => {
   
     it('TC002 - Logout setelah login', () => {
         Cypress.on('uncaught:exception', (err, runnable) => {
-            return false; // Abaikan error JS dari aplikasi
+            return false; 
           });
           
-      // Login terlebih dahulu
       cy.get('input[name="username"]').type('Admin');
       cy.get('input[name="password"]').type('admin123');
       cy.get('button[type="submit"]').click();
@@ -25,7 +24,6 @@ describe('Fitur Login OrangeHRM', () => {
       cy.url().should('include', '/dashboard/index');
       cy.get('.oxd-topbar-header-breadcrumb > h6').should('contain', 'Dashboard');
   
-      // Klik profil dan logout
       cy.get('.oxd-userdropdown-name').click();
       cy.contains('Logout').click();
       cy.wait(1000);
