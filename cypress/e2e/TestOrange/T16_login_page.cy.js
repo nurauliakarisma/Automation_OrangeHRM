@@ -5,7 +5,6 @@ describe('Fitur Login OrangeHRM', () => {
 
   it('TC001 - Login dengan kredensial valid', () => {
     cy.intercept('POST', '**/auth/validate').as('loginRequest');
-
     cy.get('input[name="username"]').type('Admin');
     cy.get('input[name="password"]').type('admin123');
     cy.get('button[type="submit"]').click();
